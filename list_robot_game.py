@@ -14,7 +14,15 @@ from random import randint
 rx = randint( 0, 9 )
 ry = randint( 0, 9 )
 
-# 2 - BOMB
+# 2 -BOMB
+bx = randint( 0, 9 )
+by = randint( 0, 9 )
+
+#3 -HP
+hpx = randint( 0, 9 )
+hpy = randint( 0, 9 )
+
+
 
 # #### GAME MAP ##########
 
@@ -24,7 +32,7 @@ gm = [
   [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
   [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
   [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-  [ 0, 0, 0, 0, 2, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
   [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
   [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
   [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
@@ -32,11 +40,11 @@ gm = [
 
 ]
 
-gm[ry][rx] = 1 #initial robot coord setup
+gm[ry][rx]   = 1 #initial robot coord setup
+gm[bx][by]   = 2
+gm[hpx][hpy] = 3
 
-while True:
-# #### DRAW THE MAP ########
-
+def draw_map():
 
  system( "clear" )
 
@@ -50,6 +58,9 @@ while True:
    elif( gm[y][x] == 2 ):
     print( " B ", end = " " )
   
+   elif(gm[y][x] == 3 ):
+    print( " H ", end = " " )
+   
    else:
     print( " . ", end = " " )
    
@@ -58,35 +69,38 @@ while True:
  print( "#" * 38 )
 
 
-# ##########################
+def movement(direction):
+ direction = input( ">>>>> " )
 
-# #### MOVE ROBOT ##########
-
-
- option = input( ">>>> " )
-# HW2: optimize movement
-# HW3: check for bomb
-
- if( option == "d" ): #>>>>
+ if( direction == "d" ): #>>>>
   gm[ry][rx] = 0
   rx += 1
   gm[ry][rx] = 1
 
- elif( option == "a" ): #<<<<
+ elif( direction == "a" ): #<<<<
   gm[ry][rx] = 0
   rx -= 1
   gm[ry][rx] = 1
 
- elif( option == "s" ): # down
+ elif( direction == "s" ): # down
   gm[ry][rx] = 0
   ry += 1
   gm[ry][rx] = 1
 
- elif( option == "w" ): # up
+ elif( direction == "w" ): # up
   gm[ry][rx] = 0
   ry -= 1
   gm[ry][rx] = 1
 
+ 
+
+
+while True:
+
+ draw_map()
+ movement()
+# HW2: optimize movement
+# HW3: check for bomb
 # ######################### 
 
 
