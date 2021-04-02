@@ -69,28 +69,29 @@ def draw_map():
  print( "#" * 38 )
 
 
-def movement(direction):
+def movement( crd_y, crd_x, step ): #coordinate_x, coordinate_y
+
  direction = input( ">>>>> " )
 
  if( direction == "d" ): #>>>>
-  gm[ry][rx] = 0
-  rx += 1
-  gm[ry][rx] = 1
+  gm[crd_y][crd_x] = 0
+  crd_x += step
+  gm[crd_y][crd_x] = 1
 
  elif( direction == "a" ): #<<<<
-  gm[ry][rx] = 0
-  rx -= 1
-  gm[ry][rx] = 1
+  gm[crd_y][crd_x] = 0
+  crd_x -= step
+  gm[crd_y][crd_x] = 1
 
  elif( direction == "s" ): # down
-  gm[ry][rx] = 0
-  ry += 1
-  gm[ry][rx] = 1
+  gm[crd_y][crd_x] = 0
+  crd_y += step
+  gm[crd_y][crd_x] = 1
 
  elif( direction == "w" ): # up
-  gm[ry][rx] = 0
-  ry -= 1
-  gm[ry][rx] = 1
+  gm[crd_y][crd_x] = 0
+  crd_y -= step
+  gm[crd_y][crd_x] = 1
 
  
 
@@ -98,7 +99,7 @@ def movement(direction):
 while True:
 
  draw_map()
- movement()
+ movement( ry, rx, 1 )
 # HW2: optimize movement
 # HW3: check for bomb
 # ######################### 
