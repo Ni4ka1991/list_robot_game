@@ -15,8 +15,8 @@ rx = randint( 0, 9 )
 ry = randint( 0, 9 )
 
 # 2 -BOMB
-bx = randint( 0, 9 )
-by = randint( 0, 9 )
+bx = 5
+by = 5
 
 #3 -HP
 hpx = randint( 0, 9 )
@@ -73,21 +73,54 @@ while True:
  
  step = 1
  draw_map()
+ 
+ if( ry == by and rx == bx ):
+     print( "BOOOM! GAME OVER!" )
+     break
+# code doesn't work. I see it later
+# if( ry == hpy and rx == hpx ):
+#    print( "GREAT!!!" )
+#     input( "hit ENTER to continue" )
+
 
 
  direction = input( ">>>>> " )
+  
  gm[ry][rx] = 0 
+ 
  if( direction == "d" ): #>>>>
-  rx += 1
+  if( rx < 9 ):
+   rx += 1
+  else:
+   print( "You cant't move here" )
+   input(" hit ENTER to continue" )
+ 
  elif( direction == "a" ): #<<<<
-  rx -= step
+  if( rx > 0 ):
+   rx -= step
+  else:
+   print( "You cant't move here" )
+   input(" hit ENTER to continue" )
+ 
  elif( direction == "s" ): #down
-  ry += step
+  if( ry < 9 ):
+   ry += step
+  else:
+   print( "You cant't move here" )
+   input(" hit ENTER to continue" )
+ 
  elif( direction == "w" ): #up
-  ry -= step
+  if( ry > 0):
+   ry -= step
+  else:
+   print( "You cant't move here" )
+   input(" hit ENTER to continue" )
+ 
  gm[ry][rx] = 1
-
-# HW2: optimize movement
-# HW3: check for bomb
+ 
+ if( direction == "x" ):
+  system( "clear")
+  print("Thank you for playing!")
+  break
 # ######################### 
 
