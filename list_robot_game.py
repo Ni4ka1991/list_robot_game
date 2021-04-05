@@ -60,7 +60,7 @@ def draw_map():
   
    elif(gm[y][x] == 3 ):
     print( " H ", end = " " )
-   
+
    else:
     print( " . ", end = " " )
    
@@ -69,55 +69,25 @@ def draw_map():
  print( "#" * 38 )
 
 
-def movement( crd_y, crd_x, step ): #coordinate_x, coordinate_y
+while True:
+ 
+ step = 1
+ draw_map()
+
 
  direction = input( ">>>>> " )
-
+ gm[ry][rx] = 0 
  if( direction == "d" ): #>>>>
-  gm[crd_y][crd_x] = 0
-  crd_x += step
-  gm[crd_y][crd_x] = 1
-
+  rx += 1
  elif( direction == "a" ): #<<<<
-  gm[crd_y][crd_x] = 0
-  crd_x -= step
-  gm[crd_y][crd_x] = 1
+  rx -= step
+ elif( direction == "s" ): #down
+  ry += step
+ elif( direction == "w" ): #up
+  ry -= step
+ gm[ry][rx] = 1
 
- elif( direction == "s" ): # down
-  gm[crd_y][crd_x] = 0
-  crd_y += step
-  gm[crd_y][crd_x] = 1
-
- elif( direction == "w" ): # up
-  gm[crd_y][crd_x] = 0
-  crd_y -= step
-  gm[crd_y][crd_x] = 1
-
- 
-
-
-while True:
-
- draw_map()
- movement( ry, rx, 1 )
 # HW2: optimize movement
 # HW3: check for bomb
 # ######################### 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
